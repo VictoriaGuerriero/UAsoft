@@ -26,5 +26,19 @@ o1u3 = Order.create(user_id: 3)
 o1u4 = Order.create(user_id: 4)
 o2u4 = Order.create(user_id: 4)
 
+takeAndGo = Company.create(name: "Take & Go", email: "takeAndGo@example.com", phone: "+56 9 6969 6969", ubication: "1er Piso edificio Ingenieria", password: "takeAndGo")
+
+p1 = Product.create(name: "product1", price: 1000, information: "information1", description: "desctiption1", company_id: takeAndGo.id)
+p2 = Product.create(name: "product2", price: 2000, information: "information2", description: "desctiption2", company_id: takeAndGo.id)
+p3 = Product.create(name: "product3", price: 3000, information: "information3", description: "desctiption3", company_id: takeAndGo.id)
+p4 = Product.create(name: "product4", price: 4000, information: "information4", description: "desctiption4", company_id: takeAndGo.id)
+p5 = Product.create(name: "product5", price: 5000, information: "information5", description: "desctiption5", company_id: takeAndGo.id)
+p6 = Product.create(name: "product6", price: 6000, information: "information6", description: "desctiption6", company_id: takeAndGo.id)
+p7 = Product.create(name: "product7", price: 7000, information: "information7", description: "desctiption7", company_id: takeAndGo.id)
+p8 = Product.create(name: "product8", price: 8000, information: "information8", description: "desctiption8", company_id: takeAndGo.id)
+p9 = Product.create(name: "product9", price: 9000, information: "information9", description: "desctiption9", company_id: takeAndGo.id)
+
+
+
 
 
