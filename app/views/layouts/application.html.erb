@@ -3,6 +3,7 @@
   <head>
     <title>UAsoft</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,7 +11,31 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body style="background-color: white">
+  <header>
+    <nav class="navbar fixed-top">
+      <div class="container-fluid">
+        <span style="float: left">
+          <%= link_to image_tag("uasoft.png", width: "150", height: "75", background: "#FFFFFF"), root_path, class: "navbar-brand", style: "margin-left:.5em" %>
+          Foods Taste Better When It´s On Time
+        </span>
+        <%(1..17).each do |n| %>
+          <span></span>
+        <%end %>
+        <span style="padding-left: 40%">
+          <%=image_tag("banner.png", width: "30", height: "30", background: "#FFFFFF")%>
+        </span>
+        <span style="float: left">
+          <button class="btn btn-primary" style="color: black; background-color: white; border-color: black"> Iniciar Sesión</button>
+        </span>
+        <span style="float: left">
+          <button class="btn btn-primary" style="background-color: #FC83E2; border-color: #FC83E2"> Registrarse</button>
+        </span>
+      </div>
+    </nav>
+  </header>
+  <main id="main_content">
+        <%= yield %>
+  </main>
+</body>
 </html>
