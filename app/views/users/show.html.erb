@@ -1,5 +1,8 @@
 <br>
-<div style="background-color: white; padding-left: 10%; padding-right: 2%; height: 600px;">
+<div class="container" style="background-color: white; padding-left: 10%; padding-right: 2%; height: 630px;">
+  <br>
+  <h3>Tu perfil</h3>
+  <br>
   <span style=" float: left; width: 50%">
     <%= render @user %>
     <%= fields_for @user do |form| %>
@@ -21,8 +24,6 @@
           <%= form.text_field :phone, class: "form-control",:disabled => true, style: "border-color: #FC83E2; border-width: 2px" %>
           <br>
           <%= link_to "Editar Informacion", edit_user_registration_path, class: "btn btn-primary",  style: "background-color: #FC83E2; border-color: #FC83E2" %>
-
-
         </div>
     <% end %>
   </span>
@@ -34,5 +35,5 @@
     <%= image_tag("transbank.png", width: "280dp", height: "150dp", background: "#FFFFFF") %>
     </div>
   </span>
-
+  <br>
 </div>

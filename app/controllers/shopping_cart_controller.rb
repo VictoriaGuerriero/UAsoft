@@ -38,18 +38,18 @@ class ShoppingCartController < ApplicationController
         contents[p_id] = 1
       else
         # Otherwise, increment the ticket count
-        contents[ttp_idid] += 1
+        contents[p_id] += 1
       end
 
       update_cart(contents)
 
       # Always redirect back to the referer
-      flash[:notice] = "Ticket added to the shopping cart!"
+      flash[:notice] = "Producto añadido"
       redirect_back(fallback_location: root_path)
     rescue
       # Log the error and redirect back to the referer
       logger.error("[ShoppingCartController#add] Unable to add item to shopping cart")
-      flash[:alert] = "Failed to add an item to the shopping cart"
+      flash[:alert] = "Error al añadir producto"
       redirect_back(fallback_location: root_path)
     end
   end
@@ -70,11 +70,11 @@ class ShoppingCartController < ApplicationController
 
       update_cart(contents)
 
-      flash[:notice] = "Item removed"
+      flash[:notice] = "Producto removido"
       redirect_back(fallback_location: root_path)
 
     rescue
-      flash[:alert] = "Failed to remove ticket from the shopping cart"
+      flash[:alert] = "Error al mover producto"
       redirect_back(fallback_location: root_path)
     end
   end
