@@ -16,7 +16,6 @@ u5 = User.create(name: "name5", last_name: "last name5", email: "name5@example.c
 
 o1u1 = Order.create(user_id: 1)
 o2u1 = Order.create(user_id: 1)
-o1u1 = Order.create(user_id: 1)
 
 o1u2 = Order.create(user_id: 2)
 o2u2 = Order.create(user_id: 2)
@@ -37,7 +36,40 @@ p6 = Product.create(name: "product6", price: 6000, information: "information6", 
 p7 = Product.create(name: "product7", price: 7000, information: "information7", description: "desctiption7", company_id: takeAndGo.id)
 p8 = Product.create(name: "product8", price: 8000, information: "information8", description: "desctiption8", company_id: takeAndGo.id)
 p9 = Product.create(name: "product9", price: 9000, information: "information9", description: "desctiption9", company_id: takeAndGo.id)
+p10 = Product.create(name: "product10", price: 10000, information: "information10", description: "desctiption10", company_id: takeAndGo.id)
+p11 = Product.create(name: "product11", price: 11000, information: "information11", description: "desctiption11", company_id: takeAndGo.id)
+p12 = Product.create(name: "product12", price: 12000, information: "information12", description: "desctiption12", company_id: takeAndGo.id)
+p13 = Product.create(name: "product13", price: 13000, information: "information13", description: "desctiption13", company_id: takeAndGo.id)
+p14 = Product.create(name: "product14", price: 14000, information: "information14", description: "desctiption14", company_id: takeAndGo.id)
+p15 = Product.create(name: "product15", price: 15000, information: "information15", description: "desctiption15", company_id: takeAndGo.id)
+p16 = Product.create(name: "product16", price: 16000, information: "information16", description: "desctiption16", company_id: takeAndGo.id)
+p17 = Product.create(name: "product17", price: 17000, information: "information17", description: "desctiption17", company_id: takeAndGo.id)
+p18 = Product.create(name: "product18", price: 18000, information: "information18", description: "desctiption18", company_id: takeAndGo.id)
+p19 = Product.create(name: "product19", price: 19000, information: "information19", description: "desctiption19", company_id: takeAndGo.id)
 
+
+op1 = OrderProduct.create(order_id: o1u1, product_id: p1.id) # User1
+op2 = OrderProduct.create(order_id: o1u1, product_id: p2.id)
+
+op3 = OrderProduct.create(order_id: o2u1, product_id: p3.id)
+op4 = OrderProduct.create(order_id: o2u1, product_id: p4.id)
+op4 = OrderProduct.create(order_id: o2u1, product_id: p5.id)
+
+op5 = OrderProduct.create(order_id: o1u2, product_id: p6.id) # User 2
+op6 = OrderProduct.create(order_id: o1u2, product_id: p7.id)
+op7 = OrderProduct.create(order_id: o1u2, product_id: p8.id)
+op8 = OrderProduct.create(order_id: o1u2, product_id: p9.id)
+
+op9 = OrderProduct.create(order_id: o2u2, product_id: p10.id) # User 2
+op10 = OrderProduct.create(order_id: o2u2, product_id: p11.id)
+
+op11 = OrderProduct.create(order_id: o1u3, product_id: p12.id)
+
+op11 = OrderProduct.create(order_id: o1u4, product_id: p13.id) # User 4
+op11 = OrderProduct.create(order_id: o1u4, product_id: p14.id)
+op11 = OrderProduct.create(order_id: o1u4, product_id: p15.id)
+
+op11 = OrderProduct.create(order_id: o2u4, product_id: p16.id)
 
 
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_11_000508) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_11_003725) do
   create_table "companies", force: :cascade do |t|
     t.string "email"
     t.string "password"
@@ -24,6 +24,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_11_000508) do
   create_table "order_products", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "order_id", null: false
+    t.integer "product_id", null: false
+    t.index ["order_id"], name: "index_order_products_on_order_id"
+    t.index ["product_id"], name: "index_order_products_on_product_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -41,7 +45,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_11_000508) do
     t.datetime "updated_at", null: false
     t.integer "company_id", null: false
     t.string "name"
+    t.integer "order_product_id", null: false
     t.index ["company_id"], name: "index_products_on_company_id"
+    t.index ["order_product_id"], name: "index_products_on_order_product_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -54,6 +60,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_11_000508) do
     t.string "password"
   end
 
+  add_foreign_key "order_products", "orders"
+  add_foreign_key "order_products", "products"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "companies"
+  add_foreign_key "products", "order_products"
 end
