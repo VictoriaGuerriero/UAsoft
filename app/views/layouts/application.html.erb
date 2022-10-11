@@ -16,26 +16,38 @@
     <nav class="navbar fixed-top">
       <div class="container-fluid">
         <span style="float: left">
+        <% if user_signed_in? %>
+          <%= link_to image_tag("uasoft.png", width: "150", height: "75", background: "#FFFFFF"), productos_path, class: "navbar-brand", style: "margin-left:.5em" %>
+        <% else %>
           <%= link_to image_tag("uasoft.png", width: "150", height: "75", background: "#FFFFFF"), root_path, class: "navbar-brand", style: "margin-left:.5em" %>
+        <% end %>
           Foods Taste Better When It´s On Time
         </span>
         <%(1..17).each do |n| %>
           <span></span>
         <%end %>
+        <% if user_signed_in? %>
         <span style="padding-left: 40%">
-          <%=image_tag("banner.png", width: "30", height: "30", background: "#FFFFFF")%>
+          <%=link_to image_tag("banner.png", width: "30", height: "30", background: "#FFFFFF"), user_path(current_user)%>
         </span>
-        <span style="float: left">
-          <button class="btn btn-primary" style="color: black; background-color: white; border-color: black"> Iniciar Sesión</button>
-        </span>
-        <span style="float: left">
-          <button class="btn btn-primary" style="background-color: #FC83E2; border-color: #FC83E2"> Registrarse</button>
-        </span>
+        <% end %>
+        <% if !user_signed_in? %>
+          <span style="float: left">
+            <%= button_to("Iniciar Sesión", new_user_session_path, class: "btn btn-primary", style: "color: black; background-color: white; border-color: black")%>
+          </span>
+          <span style="float: left">
+            <%= link_to("Registrarse", new_user_registration_path, class: "btn btn-primary", style: "background-color: #FC83E2; border-color: #FC83E2", method: "get")%>
+          </span>
+        <% else %>
+          <span class="navbar-text">
+            <%= button_to("Cerrar Sesión", destroy_user_session_path, method: :delete, class: "btn btn-secondary") %>
+          </span>
+        <% end %>
       </div>
     </nav>
   </header>
   <main id="main_content">
-        <%= yield %>
+    <%= yield %>
   </main>
 </body>
 </html>
