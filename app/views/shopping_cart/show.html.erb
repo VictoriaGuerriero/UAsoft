@@ -12,7 +12,7 @@
     <thead>
       <th scope="col">Producto</th>
       <th scope="col">Precio</th>
-      <th scope="col">Precio total</th>
+      <th scope="col">Cantidad</th>
       <th scope="col">Opcion</th>
     </thead>
     <tbody>
@@ -21,18 +21,13 @@
           <td><%= item[:product].name %></td>
           <td><%= item[:product].price %></td>
           <td><%= item[:amount] %></td>
-          <td><%= item[:total_price] %></td>
-          <td>
-            <%= link_to "shopping_cart/remove/#{item[:product].id}", method: :post do %>
-              <p><i class="fas fa-minus-square fa-lg"></i></p>
-            <% end %>
-          </td>
+          <td><%= button_to "Eliminar", "shopping_cart/remove/#{item[:product].id}", method: :post, class: "btn btn-danger"%></td>
         </tr>
       <% end %>
       <tr>
-        <td colspan="2"><strong>Grand Total</strong></td>
-        <td><%= cart_item_count %></td>
+        <td><strong>Grand Total</strong></td>
         <td><%= @total %></td>
+        <td><%= cart_item_count %></td>
         <td>&nbsp;</td>
       </tr>
     </tbody>

@@ -5,7 +5,7 @@
       <p class="card-text"><%= product.price %></p>
       <p class="card-text"><%= product.information %></p>
       <p class="card-text"><%= product.description %></p>
-      <td><%= button_to "Añadir al carro", { controller: "shopping_cart", action: "add", product_id: product.id }%></td>
+      <td><%= button_to "Añadir al carro", { controller: "shopping_cart", action: "add", product_id: product.id }, class: "btn btn-primary"%></td>
     </div>
   </div>
 </div>

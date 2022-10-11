@@ -26,11 +26,7 @@
         <%(1..17).each do |n| %>
           <span></span>
         <%end %>
-        <% if user_signed_in? %>
-        <span style="padding-left: 40%">
-          <%=link_to image_tag("banner.png", width: "30", height: "30", background: "#FFFFFF"), user_path(current_user)%>
-        </span>
-        <% end %>
+        
         <% if !user_signed_in? %>
           <span style="float: left">
             <%= button_to("Iniciar Sesión", new_user_session_path, class: "btn btn-primary", style: "color: black; background-color: white; border-color: black")%>
@@ -39,6 +35,18 @@
             <%= link_to("Registrarse", new_user_registration_path, class: "btn btn-primary", style: "background-color: #FC83E2; border-color: #FC83E2", method: "get")%>
           </span>
         <% else %>
+          <span style="padding-left: 40%">
+              <%=link_to image_tag("banner.png", width: "30", height: "30", background: "#FFFFFF"), user_path(current_user)%>
+          </span>
+          <%= content_tag :a, { href: shopping_cart_path } do %> <%=image_tag("cart.svg", width: "24em") %> 
+            <span class="badge badge-danger" style="color:black;">
+            <% unless cart_item_count == 0%>
+              <%= cart_item_count %>
+            <% else %>
+              &nbsp;
+            <% end %>
+            </span>
+          <% end %>
           <span class="navbar-text">
             <%= button_to("Cerrar Sesión", destroy_user_session_path, method: :delete, class: "btn btn-secondary") %>
           </span>
@@ -47,6 +55,8 @@
     </nav>
   </header>
   <main id="main_content">
+    <p class="notice"> <%= notice %></p>
+    <p class="alert"> <%= alert %></p>
     <%= yield %>
   </main>
 </body>

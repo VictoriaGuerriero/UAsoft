@@ -1,9 +1,21 @@
 class ShoppingCartController < ApplicationController
-  # GET /shopping_cart/1
+# GET /shopping_cart/1
   # GET /shopping_cart/1.json
   def show
+    @items = []
+    @total = 0
     begin
-      prepare_cart_listing
+      contents = get_cart_items
+
+      # Traverse keys (ticket type IDs)
+      contents.each_key do |p_id|
+        # Amount of tickets per ticket type
+        product = Product.find(p_id)
+        amount = contents[p_id]
+
+        @items << { product: product, amount: amount, total_price: amount*product.price }
+        @total += amount*product.price
+      end
     rescue => e
       # Log the error and redirect back to the referer
       logger.error("[ShoppingCartController#show] Unable to display shopping cart items.\nClass:#{e.class}\nError:#{e.message}\nBacktrace: #{e.backtrace.join('\n')}")
@@ -12,39 +24,28 @@ class ShoppingCartController < ApplicationController
     end
   end
 
-  def checkout
-    begin
-      prepare_cart_listing
-    rescue
-      # Log the error and redirect back to the referer
-      logger.error("[ShoppingCartController#checkout] Unable to display shopping cart items")
-      flash[:alert] = "Failed to display shopping cart items"
-      redirect_back(fallback_location: root_path)
-    end
-  end  
-
   def add
     begin
       contents = get_cart_items
 
       # Attempt to find the required ticket type
-      product = params[:product_id]
+      p_id = params[:product_id]
+      Product.find(p_id)
 
       # If no tickets of the given type have been added
-      unless contents.has_key?(product)
+      unless contents.has_key?(p_id)
         # Add the first one
-        contents[product] = 1
+        contents[p_id] = 1
       else
         # Otherwise, increment the ticket count
-        contents[product] += 1
+        contents[ttp_idid] += 1
       end
 
       update_cart(contents)
-      redirect_back fallback_location: productos_path, notice: "Ticket added to cart."
 
-      #respond_to do |format|
-      #  format.html { redirect_back fallback_location: root_path, notice: "Ticket added to cart." }
-      #end
+      # Always redirect back to the referer
+      flash[:notice] = "Ticket added to the shopping cart!"
+      redirect_back(fallback_location: root_path)
     rescue
       # Log the error and redirect back to the referer
       logger.error("[ShoppingCartController#add] Unable to add item to shopping cart")
@@ -56,15 +57,15 @@ class ShoppingCartController < ApplicationController
   def remove
     begin
       contents = get_cart_items
-      ttid = params[:ticket_type_id]
+      p_id = params[:product_id]
 
-      unless contents.has_key?(ttid)
+      unless contents.has_key?(p_id)
         raise Exception("[ShoppingCartController#show] Unable to remove item from shopping cart")
       end
 
-      contents[ttid] -= 1
-      if contents[ttid] == 0
-        contents.delete(ttid)
+      contents[p_id] -= 1
+      if contents[p_id] == 0
+        contents.delete(p_id)
       end
 
       update_cart(contents)
@@ -90,21 +91,21 @@ class ShoppingCartController < ApplicationController
 
   private
 
-  include ShoppingCart
+  # This will serialize the current cart state
+  # and store it in the cookie
+  def update_cart(items)
+    cookies[:shopping_cart] = JSON.generate(items)
+  end
 
-  def prepare_cart_listing
-    @items = []
-    @total = 0
-
-    contents = get_cart_items
-
-    # Traverse keys (ticket type IDs)
-    contents.each_key do |k|
-      # Amount of tickets per ticket type
-      tt = TicketType.includes(:event).find(k)
-      amount = contents[k]
-      @items << { ticket_type: tt, amount: amount, total_price: amount*tt.price }
-      @total += amount*tt.price
+  # This will de-serialize the current cart state
+  # from the cookie store and return it
+  def get_cart_items
+    cart = {}
+    if cookies.has_key?(:shopping_cart)
+      cart = JSON.parse(cookies[:shopping_cart])
+    else
+      update_cart({})
     end
+    cart
   end
 end
