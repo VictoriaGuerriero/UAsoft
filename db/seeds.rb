@@ -35,7 +35,9 @@ p16 = Product.create(name: "product16", price: 16000, information: "information1
 p17 = Product.create(name: "product17", price: 17000, information: "information17", description: "desctiption17", company: takeAndGo)
 p18 = Product.create(name: "product18", price: 18000, information: "information18", description: "desctiption18", company: takeAndGo)
 p19 = Product.create(name: "product19", price: 19000, information: "information19", description: "desctiption19", company: takeAndGo)
+p20 = Product.create(name: "Coca cola original", price: 1100, information: "Bebida en lata 350cc", description: "Exquisita coca cola refrescante", company: takeAndGo)
 
+i1 = Image.create(image_url: "https://xmayor.cl/wp-content/uploads/2021/06/COCA-COLA-ORIGINAL-350CC-LATA.jpg", product: p20)
 
 o1u1 = Order.create(user: u1)
 o2u1 = Order.create(user: u1)
