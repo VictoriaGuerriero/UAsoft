@@ -80,3 +80,8 @@ td,th {
     padding: 0.2em;
     text-align: left;
 }
+
+.pink-uasoft {
+    background-color: #FC83E2;
+    border-color: #FC83E2
+  }

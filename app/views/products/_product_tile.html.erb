@@ -8,7 +8,7 @@
       <p class="card-text">Precio: <%= product.price %></p>
       <p class="card-text">Informacion: <%= product.information %></p>
       <!--<p class="card-text"><%= product.description %></p>>-->
-      <td><%= button_to "Añadir al carro", { controller: "shopping_cart", action: "add", product_id: product.id }, class: "btn btn-primary"%></td>
+      <td><%= button_to "Añadir al carro", { controller: "shopping_cart", action: "add", product_id: product.id }, class: "btn btn-primary", style: "background-color: #FC83E2; border-color: #FC83E2" %></td>
     </div>
   </div>
 </div>

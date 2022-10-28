@@ -82,7 +82,7 @@ html {
 }
 
 
-body {
+body, .color-gradient {
   margin: 0;
   font-family: var(--bs-body-font-family);
   font-size: var(--bs-body-font-size);
@@ -137,6 +137,7 @@ body {
     visibility:hidden;
   }
 }
+
 
 hr {
   margin: 1rem 0;
